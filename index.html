@@ -96,6 +96,41 @@
     <h2>Ainda estão bocejando</h2> 
       <h3>LISP trabalha diretamente na árvore sintática (notação prefixa)</h3>
       <img src="img/lisp-tree.png" width="300">
+      <h3>Não existe o conceito de precedência de operadores</h3>
+  </section>
+  <section class="slide">
+    <h2>Código e dados recebem o mesmo tratamento</h2> 
+    <pre class="code" mode="clojure">; Clojure
+
+(defn soma [x y]
+  (+ x y))
+
+(defn media [x y]
+  (/ (+ x y) 2))
+
+(defn calcular [operador valor1 valor2]
+  (operador valor1 valor2))
+
+(calcular soma 3 5)   ; resultado: 8
+
+(calcular media 3 5)  ; resultado: 4</pre>
+    <pre class="code" mode="javascript">// JavaScript 
+
+function soma(x, y) {
+  return x + y;
+}
+
+function media(x, y) {
+  return (x + y) / 2;
+}
+  
+function calcular(operador, valor1, valor2){
+  return operador(valor1, valor2);
+}
+
+calcular(soma, 3, 5)   // resultado: 8
+
+calcular(media, 3, 5)  // resultado: 4</pre>
   </section>
   <a href="#" class="deck-prev-link" title="Próximo">&#8592;</a>
 	<a href="#" class="deck-next-link" title="Anterior">&#8594;</a>
@@ -113,9 +148,9 @@
 <script type="text/javascript" src="js/codemirror.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="js/scheme.js"></script>
+<script type="text/javascript" src="js/clojure.js"></script>
 <script type="text/javascript" src="js/deck.codemirror.js"></script>
 <script type="text/javascript" src="js/deck.navigation.js"></script>
 <script type="text/javascript">
  $(function(){$.deck('.slide')});
 </script>
-
