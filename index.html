@@ -192,6 +192,19 @@ calcular(media, 3, 5)  // resultado: 4</pre>
     <h3 class="slide">Let Over Lambda trata apenas disso. É um livrinho com menos de 400 páginas<img src="img/lol.jpg"></h3>
   </section>
   <section class="slide">
+    <h2>Macros permitem que você crie sua própria DSL</h2>
+    <h3>https://github.com/pbalduino/north</h3>
+    <pre class="code" mode="clojure">
+(describe "North"
+  (context "using context"
+    (it "should test simple assertions"
+      (should (= 1 1) be-true)
+      (should (= 1 1) be-true)
+      (should (= 1 0) be-false)
+      (should (+ 1 1) be-equals 2)
+      (should (+ 1 1) be-not-equals 1))))</pre>
+  </section>
+  <section class="slide">
     <h2>E no final você vai aprender a</h2>
     <h3 class="slide">Dividir seu código em blocos pequenos e reutilizáveis</h3>
     <h3 class="slide">Reduzir as partes móveis e evitar estados globais</h3>
@@ -202,6 +215,7 @@ calcular(media, 3, 5)  // resultado: 4</pre>
   <section class="slide">
     <h2>Perguntas?</h2>
     <img src="img/beethoven.jpg" width="800">
+    <h3 class="slide">'(obrigado!)</h3>
   </section>
   <a href="#" class="deck-prev-link" title="Próximo">&#8592;</a>
 	<a href="#" class="deck-next-link" title="Anterior">&#8594;</a>
