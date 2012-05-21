@@ -93,9 +93,129 @@
     <img src="img/tree.png" width="300">
   </section>
   <section class="slide">
+    <h2>Essa tal notação prefixa</h2>
+    <pre class="code" mode="ruby"># Ruby
+
+1 + 2 + 3 + 4 + 5 + 6
+
+1 + (2 * 3) + (4 * 5)
+
+
+[1, 2, 3, 4, 5, 6].reduce(:+)</pre>
+    <pre class="code" mode="clojure">; LISP
+
+(+ 1 2 3 4 5 6)
+
+(+ 1 (* 2 3) (* 4 5))
+
+; mais legível
+(+ 1 
+  (* 2 3) 
+  (* 4 5))</pre>
+  </section>
+  <section class="slide">
     <h2>Ainda estão bocejando</h2> 
       <h3>LISP trabalha diretamente na árvore sintática (notação prefixa)</h3>
       <img src="img/lisp-tree.png" width="300">
+      <h3>Não existe o conceito de precedência de operadores</h3>
+  </section>
+  <section class="slide">
+    <h2>Código e dados recebem o mesmo tratamento</h2> 
+    <pre class="code" mode="clojure">; Clojure
+
+(defn soma [x y]
+  (+ x y))
+
+(defn media [x y]
+  (/ (+ x y) 2))
+
+(defn calcular [operador valor1 valor2]
+  (operador valor1 valor2))
+
+(calcular soma 3 5)   ; resultado: 8
+
+(calcular media 3 5)  ; resultado: 4</pre>
+    <pre class="code" mode="javascript">// JavaScript 
+
+function soma(x, y) {
+  return x + y;
+}
+
+function media(x, y) {
+  return (x + y) / 2;
+}
+  
+function calcular(operador, valor1, valor2){
+  return operador(valor1, valor2);
+}
+
+calcular(soma, 3, 5)   // resultado: 8
+
+calcular(media, 3, 5)  // resultado: 4</pre>
+  </section>
+  <section class="slide">
+    <h2>Macros</h2>
+    <pre class="code" mode="clojure">; Clojure
+(defn unless [condition falsy truey]
+  (if condition
+    falsy
+    truey))
+
+(unless authorized
+  (show-alert "Acesso negado")
+  (drop-database))</pre>
+  <h3 class="slide">Não rolou. O que aconteceu?</h3>
+  </section>
+  <section class="slide">
+    <h2>Macros</h2>
+    <pre class="code" mode="clojure">; Clojure
+(defmacro unless [condition truey falsy] 
+  `(if ~condition 
+      ~falsy 
+      ~truey))
+
+(unless authorized
+  (show-alert "Acesso negado")
+  (drop-database))
+
+(macroexpand 
+  '(unless false "Eh true" "Eh false"))
+
+; (if false "Eh false" "Eh true")
+</pre>
+    <h3 class="slide">Código é passado como parâmetro e avaliado condicionalmente</h3>
+  </section>
+  <section class="slide">
+    <h2>Macros</h2>
+    <h3>Seu código é avaliado (compilado) em tempo de execução</h3>
+    <h3>Na prática, você interfere no compilador <b>em tempo de execução</b></h3>
+    <h3 class="slide">Let Over Lambda trata apenas disso. É um livrinho com menos de 400 páginas<img src="img/lol.jpg"></h3>
+  </section>
+  <section class="slide">
+    <h2>Macros permitem que você crie sua própria DSL</h2>
+    <h3>https://github.com/pbalduino/north</h3>
+    <pre class="code" mode="clojure">
+(describe "North"
+  (context "using context"
+    (it "should test simple assertions"
+      (should (= 1 1) be-true)
+      (should (= 1 1) be-true)
+      (should (= 1 0) be-false)
+      (should (+ 1 1) be-equals 2)
+      (should (+ 1 1) be-not-equals 1))))</pre>
+  </section>
+  <section class="slide">
+    <h2>E no final você vai aprender a</h2>
+    <h3 class="slide">Dividir seu código em blocos pequenos e reutilizáveis</h3>
+    <h3 class="slide">Reduzir as partes móveis e evitar estados globais</h3>
+    <h3 class="slide">Entender melhor como funciona um compilador/interpretador</h3>
+    <h3 class="slide">E de repente vai ter vontade de criar sua própria linguagem</h3>
+    <h3 class="slide"><img src="img/lab.png"></h3>
+  </section>
+  <section class="slide">
+    <h2>Perguntas?</h2>
+    <img src="img/beethoven.jpg" width="800">
+    <h3 class="slide">'(obrigado!)</h3>
   </section>
   <a href="#" class="deck-prev-link" title="Próximo">&#8592;</a>
 	<a href="#" class="deck-next-link" title="Anterior">&#8594;</a>
@@ -112,10 +232,11 @@
 <script type="text/javascript" src="js/deck.status.js"></script>
 <script type="text/javascript" src="js/codemirror.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="js/ruby.js"></script>
 <script type="text/javascript" src="js/scheme.js"></script>
+<script type="text/javascript" src="js/clojure.js"></script>
 <script type="text/javascript" src="js/deck.codemirror.js"></script>
 <script type="text/javascript" src="js/deck.navigation.js"></script>
 <script type="text/javascript">
  $(function(){$.deck('.slide')});
 </script>
-
